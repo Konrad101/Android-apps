@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">BMI</string>
+    <string name="mass_is_empty">Please provide weight value.</string>
+    <string name="mass_kg">Mass [kg]:</string>
+    <string name="mass_lbs">Mass [lbs]:</string>
+    <string name="count_bmi">Count BMI</string>
+    <string name="empty_value">0.00</string>
+    <string name="height_is_empty">Please provide height value.</string>
+    <string name="height_is_too_small">Height is too small to calculate BMI.</string>
+    <string name="height_is_too_big">Height is too big to calculate BMI.</string>
+    <string name="weight_is_too_small">Weight is too small to calculate BMI.</string>
+    <string name="height_cm">Height [cm]:</string>
+    <string name="height_in">Height [in]:</string>
+    <string name="lbs_in_units">lbs / in</string>
+    <string name="kg_cm_units">kg / cm</string>
+    <string name="history">history</string>
+    <string name="clr_history">clear history</string>
+</resources>

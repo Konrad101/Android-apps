@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/kg_cm"
+        android:title="@string/kg_cm_units" />
+    <item android:id="@+id/lbs_in"
+        android:title="@string/lbs_in_units" />
+    <item android:id="@+id/history"
+        android:title="@string/history" />
+    <item android:id="@+id/clr_history"
+        android:title="@string/clr_history" />
+</menu>
