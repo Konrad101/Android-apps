@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Katalog</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="k">Hello blank fragment</string>
+    <string name="brand">Brand</string>
+    <string name="car_preview">car preview</string>
+    <string name="horsepower">Horsepower</string>
+    <string name="car_model">Car Model</string>
+    <string name="engine_capacity_example">5.0</string>
+    <string name="engine_type_example">V8</string>
+    <string name="only_favorite">Only favorite</string>
+    <string name="gallery">Gallery</string>
+    <string name="back">Back</string>
+    <string name="supercar_equipment">Supercar equipment</string>
+    <string name="price">Price:</string>
+</resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_navigation"
+    app:startDestination="@id/category_list">
+
+    <fragment
+        android:id="@+id/category_list"
+        android:name="and.lab.katalog.carsList.SuperCarsListFragment"
+        android:label="fragment_list"
+        tools:layout="@layout/fragment_cars_list" >
+        <action
+            android:id="@+id/action_category_list_to_car_details"
+            app:destination="@id/car_details" />
+    </fragment>
+    <fragment
+        android:id="@+id/car_details"
+        android:name="and.lab.katalog.carsDetails.CarDetailsFragment"
+        android:label="car_details_fragment"
+        tools:layout="@layout/fragment_car_details" >
+        <action
+            android:id="@+id/action_car_details_to_category_list"
+            app:destination="@id/category_list">
+            <argument
+                android:name="carID"
+                app:argType="integer"
+                android:defaultValue="0" />
+        </action>
+    </fragment>
+</navigation>
