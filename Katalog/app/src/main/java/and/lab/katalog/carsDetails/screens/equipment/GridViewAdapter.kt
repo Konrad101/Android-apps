@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 
 class GridViewAdapter(
     val context: Context,
@@ -22,7 +23,7 @@ class GridViewAdapter(
         val equipmentTextView: TextView = convView.findViewById(R.id.equipmentTV)
         val equipment = "- " + equipmentList[position]
         equipmentTextView.text = equipment
-
+        equipmentTextView.setTextColor(ContextCompat.getColor(context, R.color.superCarCard))
         return convView
     }
 

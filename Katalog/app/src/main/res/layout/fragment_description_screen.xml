@@ -26,6 +26,7 @@
                 android:background="@color/transparent"
                 android:text="@string/back"
                 android:textSize="17sp"
+                android:textColor="@color/colorPrimary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

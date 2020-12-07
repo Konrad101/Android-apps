@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#656565</color>
+    <color name="colorPrimary">#373737</color>
     <color name="colorPrimaryDark">#373737</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="superCarCard">#ECEAEA</color>
     <color name="listBackground">#575656</color>
     <color name="transparent">#00575656</color>
+    <color name="equipmentBackground">#FF7A22</color>
 </resources>

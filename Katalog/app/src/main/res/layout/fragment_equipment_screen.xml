@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/equipmentBackground"
     tools:context=".carsDetails.screens.equipment.CarEquipmentScreen">
 
     <TextView
@@ -31,7 +32,8 @@
         android:id="@+id/equipmentGridView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="115dp"
+        android:background="@color/colorPrimaryDark"
         android:numColumns="2"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
