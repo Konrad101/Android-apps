@@ -1,6 +1,7 @@
 Android-apps
 
 Aplikacja katalog: 
+
 	Spis:
 	 - swipe itemu w lewo spowoduje usunięcie go z listy
 	 - w options menu jest check box, który pokazuje tylko ulubione
