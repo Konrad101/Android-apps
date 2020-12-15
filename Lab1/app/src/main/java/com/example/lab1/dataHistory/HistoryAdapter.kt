@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.lab1.BmiDataHolder
+import com.example.lab1.dataHistory.database.BmiDataHolder
 import com.example.lab1.R
 import com.example.lab1.bmiDecorators.BmiTVDecorator
 import kotlinx.android.synthetic.main.history_item.view.*

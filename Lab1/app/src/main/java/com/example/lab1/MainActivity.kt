@@ -1,8 +1,6 @@
 package com.example.lab1
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -12,32 +10,39 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.lab1.bmi.Bmi
 import com.example.lab1.bmi.BmiForCmKg
 import com.example.lab1.bmi.BmiForInLbs
-import com.example.lab1.dataHistory.HistoryActivity
-import com.example.lab1.databinding.ActivityMainBinding
 import com.example.lab1.bmiDecorators.BmiTVDecorator
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import com.example.lab1.dataHistory.HistoryActivity
+import com.example.lab1.dataHistory.database.BmiDataHolder
+import com.example.lab1.dataHistory.database.HistoryRepository
+import com.example.lab1.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var historyRepository: HistoryRepository
     private lateinit var binding: ActivityMainBinding
-    private var americanUnits: Boolean = false
 
-    private lateinit var sharedPrefHistory: SharedPreferences
-    private val historyPrefKey = "History"
+    companion object {
+        private var americanUnits: Boolean = false
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+
         setContentView(binding.root)
-        sharedPrefHistory = getPreferences(Context.MODE_PRIVATE)
+        historyRepository = HistoryRepository(application)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.options_menu, menu)
         return true
+    }
+
+    override fun onStart() {
+        super.onStart()
+        updateTextViewsUnits()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -66,18 +71,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun startHistoryActivity() {
         val intent = Intent(this, HistoryActivity::class.java)
-        val historyList = getHistoryListFromPreferences()
-        intent.putExtra("history_list", historyList)
         startActivityForResult(intent, 0)
     }
 
-    private fun clearHistory(){
-        val bmiHistory: ArrayList<BmiDataHolder> = arrayListOf()
-        sharedPrefHistory.edit().apply {
-            val gsonHistory: String = Gson().toJson(bmiHistory)
-            putString(historyPrefKey, gsonHistory)
-            apply()
-        }
+    private fun clearHistory() {
+        historyRepository.clear()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -94,20 +92,10 @@ class MainActivity : AppCompatActivity() {
         BmiTVDecorator(bmiTV, bmiValue).colorBmiValue()
 
         americanUnits = savedInstanceState.getBoolean("units")
-        if (americanUnits) {
-            updateTextViewsUnits()
-        }
-    }
-
-    private fun getHistoryListFromPreferences(): ArrayList<BmiDataHolder> {
-        val historyJson = sharedPrefHistory.getString(historyPrefKey, "")
-        val listType = object : TypeToken<List<BmiDataHolder>>() {}.type
-        return Gson().fromJson(historyJson, listType)
     }
 
     private fun saveBmiDataInHistory(bmi: Double, mass: Double, height: Double) {
-        val bmiHistory: ArrayList<BmiDataHolder> = getHistoryListFromPreferences()
-        bmiHistory.add(
+        val holder =
             BmiDataHolder(
                 bmi = bmi,
                 weight = mass,
@@ -115,12 +103,7 @@ class MainActivity : AppCompatActivity() {
                 americanUnits = americanUnits,
                 calculationDate = Date()
             )
-        )
-        sharedPrefHistory.edit().apply {
-            val gsonHistory: String = Gson().toJson(bmiHistory)
-            putString(historyPrefKey, gsonHistory)
-            apply()
-        }
+        historyRepository.insert(holder)
     }
 
     private fun updateTextViewsUnits() {
@@ -175,7 +158,7 @@ class MainActivity : AppCompatActivity() {
                     }
                     val bmi: Double = bmiCalculator.count()
                     val bmiText = String.format("%.2f", bmi)
-                    if(bmiText != bmiTV.text.toString()) {
+                    if (bmiText != bmiTV.text.toString()) {
                         bmiTV.text = bmiText
                         saveBmiDataInHistory(bmi, mass, height)
                         val bmiDecorator = BmiTVDecorator(bmiTV, bmi)
