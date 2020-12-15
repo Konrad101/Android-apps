@@ -3,6 +3,7 @@ package com.example.lab1.bmiDecorators
 import android.graphics.Color
 import android.widget.TextView
 import com.example.lab1.BmiResultActivity
+import com.example.lab1.bmi.BmiBounds
 
 class BmiTVDecorator(private val bmiTextView: TextView, private val bmiValue: Double) {
     private val noneOperationColor: String = "#000000"
@@ -19,10 +20,10 @@ class BmiTVDecorator(private val bmiTextView: TextView, private val bmiValue: Do
             bmiValue == 0.0 -> {
                 noneOperationColor
             }
-            bmiValue < BmiResultActivity().greatBmiLowerBound -> {
+            bmiValue < BmiBounds.GREAT_BMI_LOWER_BOUND -> {
                 blueColorHex
             }
-            bmiValue > BmiResultActivity().greatBmiUpperBound -> {
+            bmiValue > BmiBounds.GREAT_BMI_UPPER_BOUND -> {
                 redColorHex
             }
             else -> {
@@ -34,10 +35,10 @@ class BmiTVDecorator(private val bmiTextView: TextView, private val bmiValue: Do
 
     fun addComment() {
         when {
-            bmiValue < BmiResultActivity().greatBmiLowerBound -> {
+            bmiValue < BmiBounds.GREAT_BMI_LOWER_BOUND -> {
                 bmiTextView.text = smallBmiDescription
             }
-            bmiValue > BmiResultActivity().greatBmiUpperBound -> {
+            bmiValue > BmiBounds.GREAT_BMI_UPPER_BOUND -> {
                 bmiTextView.text = bigBmiDescription
             }
             else -> {

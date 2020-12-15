@@ -9,9 +9,6 @@ import kotlinx.android.synthetic.main.activity_bmi_result.*
 class BmiResultActivity : AppCompatActivity() {
     private var bmiResult: Double = 0.0
 
-    val greatBmiLowerBound: Double = 18.5
-    val greatBmiUpperBound: Double = 24.99
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bmi_result)
