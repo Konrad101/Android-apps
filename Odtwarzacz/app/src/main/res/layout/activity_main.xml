@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="550dp">
+
+            <com.jgabrielfreitas.core.BlurImageView
+                android:id="@+id/background_cover"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/album_cover" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                tools:ignore="UseCompoundDrawables">
+
+                <TextView
+                    android:id="@+id/song_title_TV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/titleBackground"
+                    android:text="@string/title"
+                    android:textColor="@color/titleTextColor"
+                    android:textSize="40sp" />
+
+                <ImageView
+                    android:id="@+id/song_cover"
+                    android:layout_width="350dp"
+                    android:layout_height="350dp"
+                    android:layout_marginVertical="12dp"
+                    android:src="@drawable/album_cover"
+                    tools:ignore="ContentDescription" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <SeekBar
+        android:id="@+id/seek_bar"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp" />
+
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="45dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/prev_song_button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="15dp"
+                android:background="@drawable/button_style"
+                android:src="@drawable/ic_baseline_skip_previous_40" />
+
+            <ImageButton
+                android:id="@+id/fast_rewind_button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/button_style"
+                android:src="@drawable/ic_baseline_fast_rewind_50" />
+
+            <ImageButton
+                android:id="@+id/play_button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/button_style"
+                android:src="@drawable/ic_baseline_play_arrow_60" />
+
+            <ImageButton
+                android:id="@+id/fast_forward_button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/button_style"
+                android:src="@drawable/ic_baseline_fast_forward_50" />
+
+            <ImageButton
+                android:id="@+id/next_song_button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="15dp"
+                android:background="@drawable/button_style"
+                android:src="@drawable/ic_baseline_skip_next_40" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

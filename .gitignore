@@ -80,3 +80,7 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
+
+# music player files
+.mp3
+.jpg
