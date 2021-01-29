@@ -10,6 +10,7 @@ class SongScanner : SongReader {
         songs.add(Song("Paint it, black", R.raw.paint_it_black, R.drawable.album_cover))
         songs.add(Song("Boogie wonderland", R.raw.boogie_wonderland))
         songs.add(Song("Y.M.C.A.", R.raw.ymca, R.drawable.ymca_cover))
+        songs.add(Song("Billie Jean", R.raw.billie_jean, R.drawable.billie_jean_cover))
         return songs
     }
 }

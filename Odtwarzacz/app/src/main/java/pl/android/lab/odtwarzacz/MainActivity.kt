@@ -1,7 +1,9 @@
 package pl.android.lab.odtwarzacz
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
-import android.graphics.drawable.BitmapDrawable
+import android.graphics.PorterDuff
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
@@ -10,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_main.*
 import pl.android.lab.odtwarzacz.song.readers.SongScanner
+
 
 class MainActivity : AppCompatActivity() {
     private val seekBarRefreshMillis = 300L
@@ -20,6 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
         playerViewModel = ViewModelProvider(this).get(PlayerViewModel::class.java)
 
@@ -27,8 +31,6 @@ class MainActivity : AppCompatActivity() {
             playerViewModel.setSongs(this, SongScanner().getSongReferences())
         }
 
-        background_cover.setImageResource(R.drawable.default_cover)
-        background_cover.setBlur(10)
         musicPlayer = playerViewModel.getPlayerLiveData().value!!
         observeViewModelData()
         adjustToNewSong()
@@ -41,9 +43,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun observeViewModelData() {
         playerViewModel.getSongLiveData().observe(this, {
-            background_cover.setBlur(0)
-            background_cover.setImageResource(it.songCoverReference)
-            background_cover.setBlur(5)
+            val icon: Bitmap = BitmapFactory.decodeResource(
+                this.resources,
+                it.songCoverReference
+            )
+            background_cover.setImageBitmap(background_cover.blurRenderScript(icon, 10))
+
+            background_cover.refreshDrawableState()
 
             song_cover.setImageResource(it.songCoverReference)
             song_title_TV.text = it.title
@@ -54,6 +60,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setSeekBar() {
+        seek_bar.progressDrawable.setColorFilter(Color.LTGRAY, PorterDuff.Mode.SRC_IN);
         seek_bar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 if (fromUser) {
@@ -98,9 +105,9 @@ class MainActivity : AppCompatActivity() {
     private fun skipSongForSeconds(seconds: Int) {
         val millis = seconds * 1000
         val newSongPosition = musicPlayer.currentPosition + millis
-        if (newSongPosition > 0 && newSongPosition < musicPlayer.duration){
+        if (newSongPosition > 0 && newSongPosition < musicPlayer.duration) {
             musicPlayer.seekTo(newSongPosition)
-        } else if(newSongPosition <= 0){
+        } else if (newSongPosition <= 0) {
             musicPlayer.seekTo(0)
         } else {
             musicPlayer.seekTo(musicPlayer.duration - 1)
