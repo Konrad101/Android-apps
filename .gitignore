@@ -82,5 +82,5 @@ lint/tmp/
 # lint/reports/
 
 # music player files
-.mp3
-.jpg
+*.mp3
+*.jpg
