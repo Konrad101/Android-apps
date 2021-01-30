@@ -73,7 +73,7 @@ class _ValidatorState extends State<Validator> {
     });
   }
 
-  String _getYearWithMonth(int month){
+  String _getYearWithMonth(int month) {
     String year;
     int subtractFromMonths;
     if (month < 20) {
@@ -96,7 +96,7 @@ class _ValidatorState extends State<Validator> {
     year += validatorController.text.substring(0, 2);
     String monthStr = (month - subtractFromMonths).toString().padLeft(2, '0');
 
-    return year + "." + monthStr;
+    return monthStr + "." + year;
   }
 
   @override
@@ -127,27 +127,26 @@ class _ValidatorState extends State<Validator> {
                 _validatePersonPESEL();
               }
             },
-            child: Text('Submit'),
+            child: Text('Submit', style: TextStyle(fontSize: 20)),
           ),
           Visibility(
             visible: showResult,
             child: Column(
               children: [
                 Padding(
-                  padding: new EdgeInsets.all(10),
+                  padding: new EdgeInsets.all(5),
                   child: Text('Birthday: ' + birthDate,
                       style: TextStyle(color: _textColor, fontSize: _fontSize)),
                 ),
                 Padding(
-                  padding: new EdgeInsets.all(10),
+                  padding: new EdgeInsets.all(5),
                   child: Text('Gender: ' + gender,
                       style: TextStyle(color: _textColor, fontSize: _fontSize)),
                 ),
                 Padding(
-                  padding: new EdgeInsets.all(10),
+                  padding: new EdgeInsets.all(5),
                   child: Text('Checksum: ' + checksum,
-                      style:
-                          TextStyle(color: _textColor, fontSize: _fontSize)),
+                      style: TextStyle(color: _textColor, fontSize: _fontSize)),
                 ),
               ],
             ),
